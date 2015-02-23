@@ -22,13 +22,15 @@ public:
 	// constructor
 	Page ();
 	virtual ~Page ();
-
+	
 	// this takes a page and writes its binary representation to bits
 	void ToBinary (char *bits);
 
 	// this takes a binary representation of a page and gets the
 	// records from it
 	void FromBinary (char *bits);
+
+	Record* movepointertofirst();
 
 	// the deletes the first record from a page and returns it; returns
 	// a zero if there were no records on the page
@@ -41,6 +43,11 @@ public:
 
 	// empty it out
 	void EmptyItOut ();
+	
+	//get back ptr to first record of this page.
+	void GetFirstRecord(Record *myRecord);
+	
+	
 
 };
 

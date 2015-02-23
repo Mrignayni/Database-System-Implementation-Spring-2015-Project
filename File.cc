@@ -1,6 +1,6 @@
 #include "File.h"
 #include "TwoWayList.cc"
-
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -41,6 +41,11 @@ void Page :: EmptyItOut () {
 	numRecs = 0;
 }
 
+
+Record* Page::movepointertofirst(){
+	myRecs->MoveToStart();
+	return(myRecs->Current(0));
+}
 
 int Page :: GetFirst (Record *firstOne) {
 
@@ -104,6 +109,11 @@ void Page :: ToBinary (char *bits) {
 	}
 }
 
+void Page :: GetFirstRecord(Record * myRecord){
+	
+	myRecs->MoveToStart();
+	myRecord=myRecs->Current(0);
+	}
 
 void Page :: FromBinary (char *bits) {
 
