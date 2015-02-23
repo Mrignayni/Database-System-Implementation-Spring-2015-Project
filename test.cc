@@ -13,7 +13,7 @@ void *producer (void *arg) {
 	dbfile.Open (rel->path ());
 	cout << " producer: opened DBFile " << rel->path () << endl;
 	dbfile.MoveFirst ();
-
+    cout<<"Done";
 	while (dbfile.GetNext (temp) == 1) {
 		counter += 1;
 		if (counter%100000 == 0) {
@@ -91,11 +91,11 @@ void test1 (int option, int runlen) {
 	int buffsz = 100; // pipe cache size
 	Pipe input (buffsz);
 	Pipe output (buffsz);
-
+         cout<<"before thread";
 	// thread to dump data into the input pipe (for BigQ's consumption)
 	pthread_t thread1;
 	pthread_create (&thread1, NULL, producer, (void *)&input);
-
+       cout<<"Producer Created";
 	// thread to read sorted data from output pipe (dumped by BigQ)
 	pthread_t thread2;
 	testutil tutil = {&output, &sortorder, false, false};
@@ -107,9 +107,11 @@ void test1 (int option, int runlen) {
 	}
 	pthread_create (&thread2, NULL, consumer, (void *)&tutil);
 
-	BigQ bq (input, output, sortorder, runlen);
-
+	
 	pthread_join (thread1, NULL);
+	BigQ bq (input, output, sortorder, runlen);
+	
+	
 	pthread_join (thread2, NULL);
 }
 

@@ -86,7 +86,7 @@ int Pipe :: Remove (Record *removeMe) {
 		// the pipeline is empty so we first see if this
 		// is because it was turned off
 		if (done) {
-
+                         cout<<"Pipe Empty";
 			pthread_mutex_unlock (&pipeMutex);
 			return 0;
 		}
@@ -98,6 +98,7 @@ int Pipe :: Remove (Record *removeMe) {
 		// the pipe, we need to check if it is still open
 		if (done && lastSlot == firstSlot) {
 			pthread_mutex_unlock (&pipeMutex);
+			cout<<"Pipe Empty 2";
 			return 0;
 		}
 

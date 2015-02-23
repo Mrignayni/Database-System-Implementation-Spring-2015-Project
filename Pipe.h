@@ -14,7 +14,7 @@ private:
 
 	int firstSlot;
 	int lastSlot;
-	int totSpace;
+    int totSpace;
 
 	int done;
 
@@ -26,7 +26,7 @@ private:
 	pthread_cond_t consumerVar;
 
 public:
-
+    	
 	// this sets up the pipeline; the parameter is the number of
 	// records to buffer
 	Pipe (int bufferSize);	
